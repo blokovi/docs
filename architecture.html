@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Architecture - Mainflux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Architecture";
+    var mkdocs_page_input_path = "architecture.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Mainflux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="architecture.html">Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#components">Components</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#domain-model">Domain Model</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#messaging">Messaging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#edge">Edge</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unified-iot-platform">Unified IoT Platform</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="provision.html">Provision</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="storage.html">Storage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="lora.html">LoRa</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="opcua.html">OPC-UA</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="edge.html">Edge</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="api.html">API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="twins.html">Twins</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="dev-guide.html">Developer's Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="kubernetes.html">Kubernetes</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Mainflux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/mainflux/docs/edit/master/docs/architecture.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">#</a></h1>
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">#</a></h2>
+<p>Mainflux IoT platform is comprised of the following services:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Service</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/users">users</a></td>
+<td align="left">Manages platform's users and auth concerns</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/things">things</a></td>
+<td align="left">Manages platform's things, channels and access policies</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/http">http-adapter</a></td>
+<td align="left">Provides an HTTP interface for accessing communication channels</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/mqtt">mqtt-adapter</a></td>
+<td align="left">Provides an MQTT and MQTT over WS interface for accessing communication channels</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/coap">coap-adapter</a></td>
+<td align="left">Provides a CoAP interface for accessing communication channels</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/opcua">opcua-adapter</a></td>
+<td align="left">Provides an OPC-UA interface for accessing communication channels</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/lora">lora-adapter</a></td>
+<td align="left">Provides a LoRa Server forwarder for accessing communication channels</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/mainflux/mainflux/tree/master/cli">mainflux-cli</a></td>
+<td align="left">Command line interface</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="arch" src="img/architecture.jpg" /></p>
+<h2 id="domain-model">Domain Model<a class="headerlink" href="#domain-model" title="Permanent link">#</a></h2>
+<p>The platform is built around 3 main entities: <strong>users</strong>, <strong>things</strong> and <strong>channels</strong>.</p>
+<p><code>User</code> represents the real (human) user of the system. It is represented via its
+e-mail and password, which he uses as platform access credentials in order to obtain
+an access token. Once logged into the system, user can manage his resources (i.e.
+things and channels) in CRUD fashion and define access control policies by
+connecting them.</p>
+<p><code>Thing</code> represents devices (or applications) connected to Mainflux that uses the
+platform for message exchange with other "things".</p>
+<p><code>Channel</code> represents a communication channel. It serves as message topic that
+can be consumed by all of the things connected to it.</p>
+<h2 id="messaging">Messaging<a class="headerlink" href="#messaging" title="Permanent link">#</a></h2>
+<p>Mainflux uses <a href="https://nats.io">NATS</a> as its messaging backbone, due to its
+lightweight and performant nature. You can treat its <em>subjects</em> as physical
+representation of Mainflux channels, where subject name is constructed using
+channel unique identifier.</p>
+<p>In general, there is no constrained put on content that is being exchanged
+through channels. However, in order to be post-processed and normalized,
+messages should be formatted using <a href="https://tools.ietf.org/html/draft-ietf-core-senml-08">SenML</a>.</p>
+<h2 id="edge">Edge<a class="headerlink" href="#edge" title="Permanent link">#</a></h2>
+<p>Mainflux platform can be run on the edge as well. Deploying Mainflux on a gateway makes it able to collect, store and analyze data, organize and authenticate devices.
+To connect Mainflux instances running on a gateway with Mainflux in a cloud we can use two gateway services developed for that purpose:</p>
+<ul>
+<li><a href="/edge/#agent">Agent</a></li>
+<li><a href="/edge/#export">Export</a></li>
+</ul>
+<h2 id="unified-iot-platform">Unified IoT Platform<a class="headerlink" href="#unified-iot-platform" title="Permanent link">#</a></h2>
+<p>Running Mainflux on gateway moves computation from cloud towards the edge thus decentralizing IoT system. 
+Since we can deploy same Mainflux code on gateway and in the cloud there are many benefits but the biggest one is easy deployment and adoption - once the engineers understand how to deploy and maintain the platform, they will have the same known work across the whole edge-fog-cloud continuum.
+Same set of tools can be used, same patches and bug fixes can be applied. The whole system is much easier to reason about, and the maintenance is much easier and less costly.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright (c) Mainflux</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mainflux/docs/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="getting-started.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Kubernetes - Mainflux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Kubernetes";
+    var mkdocs_page_input_path = "kubernetes.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Mainflux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="provision.html">Provision</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="storage.html">Storage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="lora.html">LoRa</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="opcua.html">OPC-UA</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="edge.html">Edge</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="api.html">API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="twins.html">Twins</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="dev-guide.html">Developer's Guide</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="kubernetes.html">Kubernetes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kubernetes">Kubernetes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kubectl">Kubectl</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#helm-v3">Helm v3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stable-helm-repository">Stable Helm Repository</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nginx-ingress-controller">Nginx Ingress Controller</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploying-mainflux">Deploying Mainflux</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#customizing-installation">Customizing Installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#additional-steps-to-configure-ingress-controller">Additional Steps to Configure Ingress Controller</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tls-mtls">TLS &amp; mTLS</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Mainflux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Kubernetes</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/mainflux/docs/edit/master/docs/kubernetes.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="kuberbetes">Kuberbetes<a class="headerlink" href="#kuberbetes" title="Permanent link">#</a></h1>
+<p>Mainflux can be easily deployed on Kubernetes platform by using Helm Chart from official <a href="https://github.com/mainflux/devops">Mainflux DevOps GitHub repository</a>.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">#</a></h2>
+<ul>
+<li>Kubernetes</li>
+<li>kubectl</li>
+<li>Helm v3</li>
+<li>Stable Helm repository</li>
+<li>Nginx Ingress Controller</li>
+</ul>
+<h3 id="kubernetes">Kubernetes<a class="headerlink" href="#kubernetes" title="Permanent link">#</a></h3>
+<p>Kubernetes is an open source container orchestration engine for automating deployment, scaling, and management of containerised applications.
+Install it locally or have access to a cluster. Follow <a href="https://kubernetes.io/docs/setup/">these instructions</a> if you need more information. </p>
+<h3 id="kubectl">Kubectl<a class="headerlink" href="#kubectl" title="Permanent link">#</a></h3>
+<p>Kubectl is official Kubernetes command line client. Follow <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">these instructions</a> to install it.</p>
+<p>Regarding the cluster control with <code>kubectl</code>, default config <code>.yaml</code> file should be <code>~/.kube/config</code>.</p>
+<h3 id="helm-v3">Helm v3<a class="headerlink" href="#helm-v3" title="Permanent link">#</a></h3>
+<p>Helm is the package manager for Kubernetes. Follow <a href="https://helm.sh/docs/intro/install/">these instructions</a> to install it.</p>
+<h3 id="stable-helm-repository">Stable Helm Repository<a class="headerlink" href="#stable-helm-repository" title="Permanent link">#</a></h3>
+<p>Add a stable chart repository:</p>
+<pre><code class="language-bash">helm repo add stable https://charts.helm.sh/stable
+</code></pre>
+<p>Add a bitnami chart repository:</p>
+<pre><code class="language-bash">helm repo add bitnami https://charts.bitnami.com/bitnami
+</code></pre>
+<h3 id="nginx-ingress-controller">Nginx Ingress Controller<a class="headerlink" href="#nginx-ingress-controller" title="Permanent link">#</a></h3>
+<p>Follow <a href="https://kubernetes.github.io/ingress-nginx/deploy/">these instructions</a> to install it.</p>
+<h2 id="deploying-mainflux">Deploying Mainflux<a class="headerlink" href="#deploying-mainflux" title="Permanent link">#</a></h2>
+<p>Get Helm charts from <a href="https://github.com/mainflux/devops">Mainflux DevOps GitHub repository</a>:</p>
+<pre><code class="language-bash">git clone https://github.com/mainflux/devops.git
+cd devops/charts/mainflux
+</code></pre>
+<p>Update the on-disk dependencies to mirror Chart.yaml:</p>
+<pre><code class="language-bash">helm dependency update
+</code></pre>
+<p>If you didn't already have namespace created you should do it with:</p>
+<pre><code class="language-bash">kubectl create namespace mf
+</code></pre>
+<p>Deploying release named <code>mainflux</code> in namespace named <code>mf</code> is done with just:</p>
+<pre><code class="language-bash">helm install mainflux . -n mf
+</code></pre>
+<p>Mainflux is now deployed on your Kubernetes.</p>
+<h3 id="customizing-installation">Customizing Installation<a class="headerlink" href="#customizing-installation" title="Permanent link">#</a></h3>
+<p>You can override default values while installing with <code>--set</code> option. For example, if you want to specify ingress hostname and pull <code>latest</code> tag of <code>users</code> image:</p>
+<pre><code class="language-bash">helm install mainflux -n mf --set ingress.hostname='example.com' --set users.image.tag='latest'
+</code></pre>
+<p>Or if release is already installed, you can update it:</p>
+<pre><code class="language-bash">helm upgrade mainflux -n mf --set ingress.hostname='example.com' --set users.image.tag='latest'
+</code></pre>
+<p>The following table lists the configurable parameters and their default values.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>defaults.logLevel</td>
+<td>Log level</td>
+<td>debug</td>
+</tr>
+<tr>
+<td>defaults.image.pullPolicy</td>
+<td>Docker Image Pull Policy</td>
+<td>IfNotPresent</td>
+</tr>
+<tr>
+<td>defaults.image.repository</td>
+<td>Docker Image Repository</td>
+<td>mainflux</td>
+</tr>
+<tr>
+<td>defaults.image.tag</td>
+<td>Docker Image Tag</td>
+<td>0.11.0</td>
+</tr>
+<tr>
+<td>defaults.replicaCount</td>
+<td>Replicas of MQTT adapter, Things, Envoy and Authn</td>
+<td>3</td>
+</tr>
+<tr>
+<td>defaults.natsPort</td>
+<td>NATS port</td>
+<td>4222</td>
+</tr>
+<tr>
+<td>defaults.jaegerPort</td>
+<td>Jaeger port</td>
+<td>6831</td>
+</tr>
+<tr>
+<td>nginx_internal.mtls.tls</td>
+<td>TLS secret which contains the server cert/key</td>
+<td></td>
+</tr>
+<tr>
+<td>nginx_internal.mtls.intermediate_crt</td>
+<td>Generic secret which contains the intermediate cert used to verify clients</td>
+<td></td>
+</tr>
+<tr>
+<td>ingress.enabled</td>
+<td>Should the Nginx Ingress be created</td>
+<td>true</td>
+</tr>
+<tr>
+<td>ingress.hostname</td>
+<td>Hostname for the Nginx Ingress</td>
+<td></td>
+</tr>
+<tr>
+<td>ingress.tls.hostname</td>
+<td>Hostname of the Nginx Ingress certificate</td>
+<td></td>
+</tr>
+<tr>
+<td>ingress.tls.secret</td>
+<td>TLS secret for the Nginx Ingress</td>
+<td></td>
+</tr>
+<tr>
+<td>nats.maxPayload</td>
+<td>Maximum payload size in bytes that the NATS server will accept</td>
+<td>268435456</td>
+</tr>
+<tr>
+<td>nats.replicaCount</td>
+<td>NATS replicas</td>
+<td>3</td>
+</tr>
+<tr>
+<td>authn.dbPort</td>
+<td>AuthN service DB port</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>authn.grpcPort</td>
+<td>AuthN service gRPC port</td>
+<td>8181</td>
+</tr>
+<tr>
+<td>authn.httpPort</td>
+<td>AuthN service HTTP port</td>
+<td>8189</td>
+</tr>
+<tr>
+<td>users.dbPort</td>
+<td>Users service DB port</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>users.httpPort</td>
+<td>Users service HTTP port</td>
+<td>8180</td>
+</tr>
+<tr>
+<td>things.dbPort</td>
+<td>Things service DB port</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>things.httpPort</td>
+<td>Things service HTTP port</td>
+<td>8182</td>
+</tr>
+<tr>
+<td>things.authGrpcPort</td>
+<td>Things service Auth gRPC port</td>
+<td>8183</td>
+</tr>
+<tr>
+<td>things.authHttpPort</td>
+<td>Things service Auth HTTP port</td>
+<td>8989</td>
+</tr>
+<tr>
+<td>things.redisESPort</td>
+<td>Things service Redis Event Store port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>things.redisCachePort</td>
+<td>Things service Redis Auth Cache port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>adapter_http.httpPort</td>
+<td>HTTP adapter port</td>
+<td>8185</td>
+</tr>
+<tr>
+<td>mqtt.proxy.mqttPort</td>
+<td>MQTT adapter proxy port</td>
+<td>1884</td>
+</tr>
+<tr>
+<td>mqtt.proxy.wsPort</td>
+<td>MQTT adapter proxy WS port</td>
+<td>8081</td>
+</tr>
+<tr>
+<td>mqtt.broker.mqttPort</td>
+<td>MQTT adapter broker port</td>
+<td>1883</td>
+</tr>
+<tr>
+<td>mqtt.broker.wsPort</td>
+<td>MQTT adapter broker WS port</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>mqtt.broker.persistentVolume.size</td>
+<td>MQTT adapter broker data Persistent Volume size</td>
+<td>5Gi</td>
+</tr>
+<tr>
+<td>mqtt.redisESPort</td>
+<td>MQTT adapter Event Store port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>mqtt.redisCachePort</td>
+<td>MQTT adapter Redis Auth Cache port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>adapter_coap.udpPort</td>
+<td>CoAP adapter UDP port</td>
+<td>5683</td>
+</tr>
+<tr>
+<td>ui.port</td>
+<td>UI port</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>bootstrap.enabled</td>
+<td>Enable bootstrap service</td>
+<td>false</td>
+</tr>
+<tr>
+<td>bootstrap.dbPort</td>
+<td>Bootstrap service DB port</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>bootstrap.httpPort</td>
+<td>Bootstrap service HTTP port</td>
+<td>8182</td>
+</tr>
+<tr>
+<td>bootstrap.redisESPort</td>
+<td>Bootstrap service Redis Event Store port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>influxdb.enabled</td>
+<td>Enable InfluxDB reader &amp; writer</td>
+<td>false</td>
+</tr>
+<tr>
+<td>influxdb.dbPort</td>
+<td>InfluxDB port</td>
+<td>8086</td>
+</tr>
+<tr>
+<td>influxdb.writer.httpPort</td>
+<td>InfluxDB writer HTTP port</td>
+<td>8900</td>
+</tr>
+<tr>
+<td>influxdb.reader.httpPort</td>
+<td>InfluxDB reader HTTP port</td>
+<td>8905</td>
+</tr>
+<tr>
+<td>adapter_opcua.enabled</td>
+<td>Enable OPC-UA adapter</td>
+<td>false</td>
+</tr>
+<tr>
+<td>adapter_opcua.httpPort</td>
+<td>OPC-UA adapter HTTP port</td>
+<td>8188</td>
+</tr>
+<tr>
+<td>adapter_opcua.redisRouteMapPort</td>
+<td>OPC-UA adapter Redis Auth Cache port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>adapter_lora.enabled</td>
+<td>Enable LoRa adapter</td>
+<td>false</td>
+</tr>
+<tr>
+<td>adapter_lora.httpPort</td>
+<td>LoRa adapter HTTP port</td>
+<td>8187</td>
+</tr>
+<tr>
+<td>adapter_lora.redisRouteMapPort</td>
+<td>LoRa adapter Redis Auth Cache port</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>twins.enabled</td>
+<td>Enable twins service</td>
+<td>false</td>
+</tr>
+<tr>
+<td>twins.dbPort</td>
+<td>Twins service DB port</td>
+<td>27017</td>
+</tr>
+<tr>
+<td>twins.httpPort</td>
+<td>Twins service HTTP port</td>
+<td>9021</td>
+</tr>
+<tr>
+<td>twins.redisCachePort</td>
+<td>Twins service Redis Cache port</td>
+<td>6379</td>
+</tr>
+</tbody>
+</table>
+<p>All Mainflux services (both core and add-ons) can have their <code>logLevel</code>, <code>image.pullPolicy</code>, <code>image.repository</code> and <code>image.tag</code> overridden.</p>
+<p>Mainflux Core is a minimalistic set of required Mainflux services. They are all installed by default:</p>
+<ul>
+<li>authn</li>
+<li>users</li>
+<li>things</li>
+<li>adapter_http</li>
+<li>adapter_mqtt</li>
+<li>adapter_coap</li>
+<li>ui</li>
+</ul>
+<p>Mainflux Add-ons are optional services that are disabled by default. Find in Configuration table parameters for enabling them, i.e. to enable influxdb reader &amp; writer you should run <code>helm install</code> with <code>--set influxdb=true</code>.
+List of add-ons services in charts:</p>
+<ul>
+<li>bootstrap</li>
+<li>influxdb.writer</li>
+<li>influxdb.reader</li>
+<li>adapter_opcua</li>
+<li>adapter_lora</li>
+<li>twins</li>
+</ul>
+<p>By default scale of MQTT adapter, Things, Envoy, Authn and NATS will be set to 3. It's recommended that you set this values to number of your nodes in Kubernetes cluster, i.e. <code>--set defaults.replicaCount=3 --set nats.replicaCount=3</code></p>
+<h3 id="additional-steps-to-configure-ingress-controller">Additional Steps to Configure Ingress Controller<a class="headerlink" href="#additional-steps-to-configure-ingress-controller" title="Permanent link">#</a></h3>
+<p>To send MQTT messages to your host on ports <code>1883</code> and <code>8883</code> some additional steps are required in configuring NGINX Ingress Controller.</p>
+<p>NGINX Ingress Controller uses ConfigMap to expose TCP services. That ConfigMap is included in helm chart in <a href="https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L141">ingress.yaml</a> file assuming that location of ConfigMap should be <code>ingress-nginx/tcp-services</code>. If Ingress Controller expects it in some other namespace or with other name you should edit metadata in <a href="https://github.com/mainflux/devops/blob/master/charts/mainflux/templates/ingress.yaml#L147">ingress.yaml</a>. This location was set with <code>--tcp-services-configmap</code> flag and you can check it in deployment of Ingress Controller or add it there in <a href="https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/">args section for nginx-ingress-controller</a> if it's not already specified. This is explained in <a href="https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/">NGINX Ingress documentation</a></p>
+<p>Also, those two ports need to be exposed in the Service defined for the Ingress. You can do that with command that edit your service:</p>
+<p><code>kubectl edit svc -n ingress-nginx nginx-ingress-ingress-nginx-controller</code></p>
+<p>and add in spec-&gt;ports:</p>
+<pre><code>  - name: mqtt
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
+  - name: mqtts
+    port: 8883
+    protocol: TCP
+    targetPort: 8883
+</code></pre>
+<h2 id="tls-mtls">TLS &amp; mTLS<a class="headerlink" href="#tls-mtls" title="Permanent link">#</a></h2>
+<p>For testing purposes you can generate certificates as explained in detail in (authentication)[/authentication] chapter of this document. So, you can use (this script)[https://github.com/mainflux/mainflux/blob/master/docker/ssl/Makefile] and after replacing all <code>localhost</code> with your hostname, run:</p>
+<pre><code>make ca
+make server_cert
+make thing_cert KEY=&lt;thing_key&gt;
+</code></pre>
+<p>you should get in <code>certs</code> folder these certificates that we will use for setting up TLS and mTLS:</p>
+<pre><code>ca.crt
+ca.key
+ca.srl
+mainflux-server.crt
+mainflux-server.key
+thing.crt
+thing.key
+</code></pre>
+<p>Create kubernetes secrets using those certificates with running commands from (secrets script)[https://github.com/mainflux/devops/blob/master/charts/mainflux/secrets/secrets.sh]. In this example secrets are created in <code>mf</code> namespace:</p>
+<pre><code>kubectl -n mf create secret tls mainflux-server \
+    --key mainflux-server.key \
+    --cert mainflux-server.crt
+
+kubectl -n mf create secret generic ca \
+    --from-file=ca.crt
+</code></pre>
+<p>You can check if they are succesfully created:
+ <code>kubectl get secrets -n mf</code></p>
+<p>And now set ingress.hostname, ingress.tls.hostname to your hostname and ingress.tls.secret to <code>mainflux-server</code> and after helm update you have secured ingress with TLS certificate.</p>
+<p>For mTLS you need to set <code>nginx_internal.mtls.tls="mainflux-server"</code> and <code>nginx_internal.mtls.intermediate_crt="ca"</code>.</p>
+<p>Now you can test sending mqtt message with this parameters:</p>
+<pre><code>mosquitto_pub -d -L mqtts://&lt;thing_id&gt;:&lt;thing_key&gt;@example.com:8883/channels/&lt;channel_id&gt;/messages  --cert  thing.crt --key thing.key --cafile ca.crt  -m &quot;test-message&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="benchmark.html" class="btn btn-neutral float-right" title="Benchmark">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="dev-guide.html" class="btn btn-neutral" title="Developer's Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright (c) Mainflux</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mainflux/docs/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="dev-guide.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="benchmark.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

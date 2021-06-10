@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Benchmark - Mainflux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Benchmark";
+    var mkdocs_page_input_path = "benchmark.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Mainflux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="provision.html">Provision</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="storage.html">Storage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="lora.html">LoRa</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="opcua.html">OPC-UA</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="edge.html">Edge</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="api.html">API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="twins.html">Twins</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="dev-guide.html">Developer's Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="kubernetes.html">Kubernetes</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="benchmark.html">Benchmark</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tools">Tools</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-up-mzbench">Setting up MZBench</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-up-amazon-ec2-plugin">Setting up Amazon EC2 plugin</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-scenarios">Test scenarios</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#message-publishing">Message publishing</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#results">Results</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-and-get-client">Create and get client</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#results_1">Results</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Mainflux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Benchmark</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/mainflux/docs/edit/master/docs/benchmark.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="test-spec">Test spec<a class="headerlink" href="#test-spec" title="Permanent link">#</a></h1>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">#</a></h2>
+<ul>
+<li><a href="https://github.com/mzbench/mzbench">MZBench</a></li>
+<li><a href="https://github.com/vernemq/vmq_mzbench">vmq_mzbench</a></li>
+<li><a href="https://github.com/mzbench/mzbench/blob/master/doc/cloud_plugins.md#amazon-ec2">mzb_api_ec2_plugin</a></li>
+</ul>
+<h3 id="setting-up-mzbench">Setting up MZBench<a class="headerlink" href="#setting-up-mzbench" title="Permanent link">#</a></h3>
+<p>MZbench is open-source tool for that can generate large traffic and measure performance of the application. MZBench is distributed, cloud-aware benchmarking tool that can seamlessly scale to millions of requests. It's originally developed by <a href="https://github.com/satori-com/mzbench">satori-com</a> but we will use <a href="https://github.com/mzbench/mzbench">mzbench</a> fork because it can run with newest Erlang releases and the original MzBench repository is not maintained anymore.</p>
+<p>We will describe installing MZBench server on Ubuntu 18.04 (this can be on your PC or some external cloud server, like droplet on Digital Ocean)</p>
+<p>Install latest OTP/Erlang (it's version 22.3 for me)</p>
+<pre><code>sudo apt update
+sudo apt install erlang
+</code></pre>
+<p>For running this tool you will also need libz-dev package:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install libz-dev
+</code></pre>
+<p>and pip:</p>
+<pre><code>sudo apt install python-pip
+</code></pre>
+<p>Clone mzbench tool and install the requirements:</p>
+<pre><code>git clone https://github.com/mzbench/mzbench
+cd mzbench
+sudo pip install -r requirements.txt
+</code></pre>
+<p>This should be enough for installing MZBench, and you can now start MZBench server with this CLI command:</p>
+<pre><code>./bin/mzbench start_server
+</code></pre>
+<p>The <a href="https://github.com/mzbench/mzbench/blob/master/doc/cli.md">MZBench CLI</a> lets you control the server and benchmarks from the command line.</p>
+<p>Another way of using MZBench is over <a href="https://github.com/mzbench/mzbench/blob/master/doc/dashboard.md">Dashboard</a>. After starting server you should check dashboard on <code>http://localhost:4800</code>. </p>
+<p>Note that if you are installing MZBench on external server (i.e. Digital Ocean droplet), that you'll be able to reach MZBench dashboard on your server's IP address:4800, if you previously:
+- change default value for <code>network_interface</code> from <code>127.0.0.1</code> to <code>0.0.0.0</code> in configuration file. Default configuration file location is <code>~/.config/mzbench/server.config</code>, create it from sample configuration file <code>~/.config/mzbench/server.config.example</code>
+- open port <code>4800</code> with <code>ufw allow 4800</code></p>
+<p>MZBench can run your test scenarios on many nodes, simultaneously. For now, you are able to run tests locally, so your nodes will be virtual nodes on machine where MZBench server is installed (your PC or DO droplet). You can try one of our <a href="https://github.com/mainflux/benchmark/tree/master/mzbench">MQTT scenarios</a> that uses <a href="https://github.com/vernemq/vmq_mzbench">vmq_mzbench</a> worker. Copy-paste scenario in MZBench dashboard, click button <em>Environmental variables</em> -&gt; <em>Add from script</em> and add appropriate values. Because it's running locally, you should try with smaller values, for example for fan-in scenario use 100 publishers on 2 nodes.
+Try this before moving forward in setting up Amazon EC2 plugin.</p>
+<h3 id="setting-up-amazon-ec2-plugin">Setting up Amazon EC2 plugin<a class="headerlink" href="#setting-up-amazon-ec2-plugin" title="Permanent link">#</a></h3>
+<p>For larger-scale tests we will set up MZBench to run each node as one of Amazon EC2 instance with built-in plugin <a href="https://github.com/mzbench/mzbench/blob/master/doc/cloud_plugins.md#amazon-ec2">mzb_api_ec2_plugin</a>.</p>
+<p>This is basic architecture when running MZBench:</p>
+<p><img alt="MZBench Architecture Running" src="https://github.com/mzbench/mzbench/raw/master/doc/images/scheme_2.png" /></p>
+<p>Every node that runs your scenarios will be one of Amazon EC2 instance; plus one more additional node — the director node. The director doesn't run scenarios, it collects the metrics from the other nodes and runs <a href="https://github.com/mzbench/mzbench/blob/master/scenarios/spec.md#pre_hook-and-post_hook">post and pre hooks</a>. So, if you want to run jobs on 10 nodes, actually 11 EC2 instances will be created.
+All instances will be automatically terminated when the test finishes.</p>
+<p>We will use one of ready-to-use Amazon Machine Images (AMI) with all necessary dependencies. We will choose AMI with OTP 22, because that is the version we have on MZBench server. So, we will search for <code>MZBench-erl22</code> AMI and find one with id <code>ami-03a169923be706764</code> available in <code>us-west-1b</code> zone.
+If you have chosen this AMI, everything you do from now must be in us-west-1 zone.
+We must have IAM user with <code>AmazonEC2FullAccess</code> and <code>IAMFullAccess</code> permissions policies, and his <code>access_key_id</code> and <code>secret_access_key</code> goes to configuration file.
+In EC2 dashboard, you must create new security group <code>MZbench_cluster</code> where you will add inbound rules to open ssh and TCP ports 4801-4804.
+Also, in EC2 dashboard go to section <code>key pairs</code>, click <code>Actions</code> -&gt; <code>Import key pair</code> and upload public key you have on your MZBench server in <code>~/.ssh/id_rsa.pub</code> (if you need to create new, run <code>ssh-keygen</code> and follow instructions). Give it a name on EC2 dashboard, put that name (<code>key_name</code>) and path (<code>keyfile</code>) in configuration file.</p>
+<pre><code>[
+{mzbench_api, [
+{network_interface,&quot;0.0.0.0&quot;},
+{keyfile, &quot;~/.ssh/id_rsa&quot;},
+{cloud_plugins, [
+                  {local,#{module =&gt; mzb_dummycloud_plugin}},
+                  {ec2, #{module =&gt; mzb_api_ec2_plugin,
+                        instance_spec =&gt; [
+                          {image_id, &quot;ami-03a169923be706764&quot;},
+                          {group_set, [&quot;MZbench_cluster&quot;]},
+                          {instance_type, &quot;t2.micro&quot;},
+                          {availability_zone, &quot;us-west-1b&quot;},
+                          {iam_instance_profile_name, &quot;mzbench&quot;},
+                          {key_name, &quot;key_pair_name&quot;}
+                        ],
+                        config =&gt; [
+                          {ec2_host, &quot;ec2.us-west-1.amazonaws.com&quot;},
+                          {access_key_id, &quot;IAM_USER_ACCESS_KEY_ID&quot;},
+                          {secret_access_key, &quot;IAM_USER_SECRET_ACCESS_KEY&quot;}
+                        ],
+                        instance_user =&gt; &quot;ec2-user&quot;
+                  }}              
+              ]
+}
+]}].
+</code></pre>
+<p>There is both <code>local</code> and <code>ec2</code> plugin in this configuration file, so you can choose to run tests on either of them.
+Default path for configuration file is <code>~/.config/mzbench/server.config</code>, if it's somewhere else, server is starting with:
+<code>$ ./bin/mzbench start_server --config &lt;config_file&gt;</code>
+Note that every time you update the configuration you have to restart the server:
+<code>$ ./bin/mzbench restart_server</code></p>
+<h2 id="test-scenarios">Test scenarios<a class="headerlink" href="#test-scenarios" title="Permanent link">#</a></h2>
+<p>Testing environment to be determined.</p>
+<h3 id="message-publishing">Message publishing<a class="headerlink" href="#message-publishing" title="Permanent link">#</a></h3>
+<p>In this scenario, large number of requests are sent to HTTP adapter service
+every second. This test checks how much time HTTP adapter needs to respond
+to each request.</p>
+<h4 id="results">Results<a class="headerlink" href="#results" title="Permanent link">#</a></h4>
+<p>TBD</p>
+<h3 id="create-and-get-client">Create and get client<a class="headerlink" href="#create-and-get-client" title="Permanent link">#</a></h3>
+<p>In this scenario, large number of requests are sent to things service to create
+things and than to retrieve their data. This test checks how much time things
+service needs to respond to each request.</p>
+<h4 id="results_1">Results<a class="headerlink" href="#results_1" title="Permanent link">#</a></h4>
+<p>TBD</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="kubernetes.html" class="btn btn-neutral" title="Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright (c) Mainflux</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mainflux/docs/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="kubernetes.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

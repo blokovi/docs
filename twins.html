@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Twins - Mainflux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Twins";
+    var mkdocs_page_input_path = "twins.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Mainflux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="provision.html">Provision</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="messaging.html">Messaging</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="storage.html">Storage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="lora.html">LoRa</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="opcua.html">OPC-UA</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="edge.html">Edge</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="api.html">API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="twins.html">Twins</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-digital-twin">What is Digital Twin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mainflux-digital-twin">Mainflux Digital Twin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mainflux-platform-and-mainflux-twins-service">Mainflux Platform and Mainflux Twins Service</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#twins-anatomy">Twin's Anatomy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication-and-authorization">Authentication and Authorization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#twin-operations">Twin Operations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#create-and-update">Create and Update</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create">Create</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#update">Update</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#view">View</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list">List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete">Delete</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#states-operations">STATES operations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list_1">List</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notifications">Notifications</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="dev-guide.html">Developer's Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="kubernetes.html">Kubernetes</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Mainflux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Twins</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/mainflux/docs/edit/master/docs/twins.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="twins-service">Twins Service<a class="headerlink" href="#twins-service" title="Permanent link">#</a></h2>
+<p><em>Mainflux twins service is built on top of the Mainflux platform. In order to fully understand what follows, be sure to get acquainted with <a href="architecture.html">overall Mainflux architecture</a>.</em></p>
+<h3 id="what-is-digital-twin">What is Digital Twin<a class="headerlink" href="#what-is-digital-twin" title="Permanent link">#</a></h3>
+<p><strong>Twin</strong> refers to a <strong>digital representation</strong> of a <strong>real world data system</strong> consisting of possibly multiple data sources/producers and/or destinations/consumers (data agents).</p>
+<p>For example, an industrial machine can use multiple protocols such as MQTT, OPC-UA, a regularly updated machine hosted CSV file etc. to send measurement data - such as flowrate, material temperature, etc. - and state metadata - such as engine and chassis temperature, engine rotations per seconds, identity of the current human operator, etc. - as well as to receive control, i.e. actuation messages - such as, turn on/off light, increment/decrement borer speed, change blades, etc.</p>
+<p>Digital twin is an abstract - and usually less detailed - digital replica of a real world system such as the industrial machine we have just described. It is used to create and store information about system's state at any given moment, to compare system state over a given period of time - so-called diffs or deltas - as well as to control agents composing the system.</p>
+<h3 id="mainflux-digital-twin">Mainflux Digital Twin<a class="headerlink" href="#mainflux-digital-twin" title="Permanent link">#</a></h3>
+<p>Any data producer or data consumer - which we refer to here collectively as data agent - or an interrelated system of data agents, can be represented by means of possibly multiple <a href="architecture.html">Mainflux things, channels and subtopics</a>. For example, an OPC-UA server can be represented as a Mainflux thing and its nodes can be represented as multiple Mainflux channels or multiple subtopics of a single Mainflux channel. What is more, you can invert the representation: you can represent server as a channel and node as things. Mainflux platform is meant to empower you with the freedom of expression so you can make a digital representation of any data agent according to your needs.</p>
+<p>Although this works well, satisfies the requirements of a wide variety of use cases and corresponds to the intended use of Mainlfux IoT platform, this setup can be insufficient in two important ways. Firstly, different things, channels, and their connections - i.e. Mainflux representations of different data agent structures - are unrelated to each other, i.e. they do not form a <strong>meaningful whole</strong> and, as a consequence, they do not represent a <strong>single unified system</strong>. Secondly, the <strong>semantic</strong> aspect, i.e. the <strong>meaning</strong> of different things and channels is not transparent and defined by the sole use of Mainflux platform entities (channels and things).</p>
+<p>Certainly, we can try to describe things and channels connections and relations as well as their meaning - i.e. their role, position, function in the overall system - by means of their <a href="provision.html">metadata</a>. Although this might work well - with a proviso of a lot of additional effort of writing the relatively complex code to create and parse metadata - it is not a practical approach and we still don't get - at least not out of the box - a readable and useful overview of the system as a whole. Also, this approach does not enable us to answer a simple but very important question, i.e. what was the detailed state of a complete system at a certain moment in time.</p>
+<p>To overcome these problems, Mainflux comes with a <strong>digital twin service</strong>. The twins service is built on top of the Mainflux platform and relies on its architecture and entities, more precisely, on Mainflux users, things and channels. The primary task of the twin service is to handle Mainflux digital twins. Mainflux digital twin consists of three parts:</p>
+<ul>
+<li>General data about twin itself, i.e. <strong>twin's metadata</strong>,</li>
+<li>History of twin's <strong>definitions</strong>, including current definition,</li>
+<li>History of twin's <strong>states</strong>, including current state.</li>
+</ul>
+<h3 id="mainflux-platform-and-mainflux-twins-service">Mainflux Platform and Mainflux Twins Service<a class="headerlink" href="#mainflux-platform-and-mainflux-twins-service" title="Permanent link">#</a></h3>
+<p>Mainflux Twins service depends on the Mainflux IoT platform. The following diagram shows the place of the twins service in the overall <a href="architecture.html">Mainflux architecture</a>:</p>
+<p><img alt="Mainflux Twins service architecture" src="img/twins/architecture.png" /></p>
+<p>You use an HTTP client to communicate with the twins service. Every request sent to the twins service is authenticated by users service. Twins service handles CRUD requests and creates, retrieves, updates and deletes twins. The CRUD operations depend on the database to persist and fetch already saved twins.</p>
+<p>Twins service listens to NATS server and intercepts messages passing <em>via</em> NATS broker. Every Mainflux message contains information about subchannel and topic used to send a message. Twins service compares this info with attribute definitions of twins persisted in the database, fetches the corresponding twins and updates their respective states.</p>
+<p>Before we dwell into twin's anatomy, it is important to realize that in order to use Mainflux twin service, you have to <a href="provision.html">provision Mainflux things and channels</a> and you have to connect things and channels beforehand. As you go, you can modify your things, channels and connections and you can modify your digital twin to reflect these modifications, but you have to have at least a minimal setup in order to use the twin service.</p>
+<h3 id="twins-anatomy">Twin's Anatomy<a class="headerlink" href="#twins-anatomy" title="Permanent link">#</a></h3>
+<p>Twin's <strong>general information</strong> stores twin's owner email - owner is represented by Mainflux user -, twin's ID (unique) and name (not necessarily unique), twin's creation and update dates as well as twin's revision number. The latter refers to the sequential number of twin's definition.</p>
+<p>The twin's <strong>definition</strong> is meant to be a semantic representation of system's data sources and consumers (data agents). Each data data agent is represented by means of <strong>attribute</strong>. Attribute consists of data agent's name, Mainflux channel and subtopic over which it communicates. Nota bene: each attribute is uniquely defined by the combination of channel and subtopic and we cannot have two or more attributes with the same channel and subtopic in the same definition.</p>
+<p>Attributes have a state persistence flag that determines whether the messages communicated by its corresponding channel and subtopic trigger the creation of a new twin state. Twin states are persisted in the separate collection of the same database. Currently, twins service uses the MongoDB. InfluxDB support for twins and states persistence is on the roadmap.</p>
+<p>When we define our digital twin, its JSON representation might look like this:</p>
+<pre><code class="language-json">{
+    &quot;owner&quot;: &quot;john.doe@email.net&quot;,
+    &quot;id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+    &quot;name&quot;: &quot;grinding machine 2&quot;,
+    &quot;revision&quot;: 2,
+    &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+    &quot;updated&quot;: &quot;2020-05-05T08:49:12.638Z&quot;,
+    &quot;definitions&quot;: [
+        {
+            &quot;id&quot;: 0,
+            &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+            &quot;attributes&quot;: [],
+            &quot;delta&quot;: 1000000
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:46:23.207Z&quot;,
+            &quot;attributes&quot;: [
+                {
+                    &quot;name&quot;: &quot;engine temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;engine&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;chassis temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;chassis&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;rotations per sec&quot;,
+                    &quot;channel&quot;: &quot;a254032a-8bb6-4973-a2a1-dbf80f181a86&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: false
+                }
+            ],
+            &quot;delta&quot;: 1000000
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:12.638Z&quot;,
+            &quot;attributes&quot;: [
+                {
+                    &quot;name&quot;: &quot;engine temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;engine&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;chassis temperature&quot;,
+                    &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+                    &quot;subtopic&quot;: &quot;chassis&quot;,
+                    &quot;persist_state&quot;: true
+                },
+                {
+                    &quot;name&quot;: &quot;rotations per sec&quot;,
+                    &quot;channel&quot;: &quot;a254032a-8bb6-4973-a2a1-dbf80f181a86&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: false
+                },
+                {
+                    &quot;name&quot;: &quot;precision&quot;,
+                    &quot;channel&quot;: &quot;aed0fbca-0d1d-4b07-834c-c62f31526569&quot;,
+                    &quot;subtopic&quot;: &quot;&quot;,
+                    &quot;persist_state&quot;: true
+                }
+            ],
+            &quot;delta&quot;: 1000000
+        }
+    ]
+}
+</code></pre>
+<p>In the case of the upper twin, we begin with an empty definition, the one with the <code>id</code> <strong>0</strong> - we could have provided the definition immediately - and over the course of time, we add two more definitions, so the total number of revisions is <strong>2</strong> (revision index is zero-based). We decide not to persist the number of rotation per second in our digital twin state. We define it, though, because the definition and its attributes are used not only to define states of a complex data agent system, but also to define the semantic structure of the system. <code>delta</code> is the number of nanoseconds used to determine whether the received attribute value should trigger the generation of the new state or the same state should be updated. The reason for this is to enable state sampling over the regular intervals of time. Discarded values are written to the database of choice by Mainflux <a href="storage.html">writers</a>, so you can always retrieve intermediate values if need be.</p>
+<p><strong>states</strong> are created according to the twin's current definition. A state stores twin's ID - every state belongs to a single twin -, its own ID, twin's definition number, creation date and the actual payload. <strong>Payload</strong> is a set of key-value pairs where a key corresponds to the attribute name and a value is the actual value of the attribute. All <a href="https://tools.ietf.org/html/rfc8428#section-4.3">SenML value types</a> are supported.</p>
+<p>A JSON representation of a partial list of states might look like this:</p>
+<pre><code class="language-json">{
+    &quot;total&quot;: 28,
+    &quot;offset&quot;: 10,
+    &quot;limit&quot;: 5,
+    &quot;states&quot;: [
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 11,
+            &quot;definition&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:49:06.167Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 0.3394171011161684,
+                &quot;engine temperature&quot;: 0.3814079472715233
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 12,
+            &quot;definition&quot;: 1,
+            &quot;created&quot;: &quot;2020-05-05T08:49:12.168Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 1.8116442194724147,
+                &quot;engine temperature&quot;: 0.3814079472715233
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 13,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:18.174Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 1.8116442194724147,
+                &quot;engine temperature&quot;: 3.2410616702795814
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 14,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:19.145Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 3.2410616702795814,
+                &quot;engine temperature&quot;: 3.2410616702795814,
+                &quot;precision&quot;: 8.922156489392854
+            }
+        },
+        {
+            &quot;twin_id&quot;: &quot;a838e608-1c1b-4fea-9c34-def877473a89&quot;,
+            &quot;id&quot;: 15,
+            &quot;definition&quot;: 2,
+            &quot;created&quot;: &quot;2020-05-05T08:49:24.178Z&quot;,
+            &quot;payload&quot;: {
+                &quot;chassis temperature&quot;: 0.8694383878692546,
+                &quot;engine temperature&quot;: 3.2410616702795814,
+                &quot;precision&quot;: 8.922156489392854
+            }
+        }
+    ]
+}
+</code></pre>
+<p>As you can see, the first two states correspond to the definition <strong>1</strong> and have only two attributes in the payload. The rest of the states is based on the definition <strong>2</strong>, where we persist three attributes and, as a consequence, its payload consists of three entries.</p>
+<h3 id="authentication-and-authorization">Authentication and Authorization<a class="headerlink" href="#authentication-and-authorization" title="Permanent link">#</a></h3>
+<p>Twin belongs to a Mainflux user, tenant representing a physical person or an organization. User owns Mainflux things and channels as well as twins. Mainflux user provides authorization and authentication mechanisms to twins service. For more details, please see <a href="authentication.html">Authentication with Mainflux keys</a>. In practical terms, we need to create a Mainflux user in order to create a digital twin. Every twin belongs to exactly one user. One user can have unlimited number of digital twins.</p>
+<h3 id="twin-operations">Twin Operations<a class="headerlink" href="#twin-operations" title="Permanent link">#</a></h3>
+<p>For more information about the Twins service HTTP API please refer to the <a href="https://github.com/mainflux/mainflux/blob/master/twins/openapi.yml">twins service OpenAPI file</a>.</p>
+<h4 id="create-and-update">Create and Update<a class="headerlink" href="#create-and-update" title="Permanent link">#</a></h4>
+<p>Create and update requests use JSON body to initialize and modify, respectively, twin. You can omit every piece of data - every key-value pair - from the JSON. However, you must send at least an empty JSON body.</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;twin_name&quot;,
+  &quot;definition&quot;: {
+    &quot;attributes&quot;: [
+      {
+        &quot;name&quot;: &quot;temperature&quot;,
+        &quot;channel&quot;: &quot;3b57b952-318e-47b5-b0d7-a14f61ecd03b&quot;,
+        &quot;subtopic&quot;: &quot;temperature&quot;,
+        &quot;persist_state&quot;: true
+      },
+      {
+        &quot;name&quot;: &quot;humidity&quot;,
+        &quot;channel&quot;: &quot;3b57b952-318e-47b5-b0d7-a14f61ecd03b&quot;,
+        &quot;subtopic&quot;: &quot;humidity&quot;,
+        &quot;persist_state&quot;: false
+      },
+      {
+        &quot;name&quot;: &quot;pressure&quot;,
+        &quot;channel&quot;: &quot;7ef6c61c-f514-402f-af4b-2401b588bfec&quot;,
+        &quot;subtopic&quot;: &quot;&quot;,
+        &quot;persist_state&quot;: true
+      }
+    ],
+    &quot;delta&quot;: 1
+  }
+}
+</code></pre>
+<h5 id="create">Create<a class="headerlink" href="#create" title="Permanent link">#</a></h5>
+<p>Create request uses POST HTTP method to create twin:</p>
+<pre><code class="language-bash">curl -s -S -i -X POST -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins -d '&lt;twin_data&gt;'
+</code></pre>
+<p>If you do not suply the definition, the empty definition of the form</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;created&quot;: &quot;2020-05-05T08:41:39.142Z&quot;,
+    &quot;attributes&quot;: [],
+    &quot;delta&quot;: 1000000
+}
+</code></pre>
+<p>will be created.</p>
+<h5 id="update">Update<a class="headerlink" href="#update" title="Permanent link">#</a></h5>
+<pre><code class="language-bash">curl -s -S -i -X PUT -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/&lt;twin_id&gt; -d '&lt;twin_data&gt;'
+</code></pre>
+<h4 id="view">View<a class="headerlink" href="#view" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins/&lt;twin_id&gt;
+</code></pre>
+<h4 id="list">List<a class="headerlink" href="#list" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins
+</code></pre>
+<p>List requests accepts <code>limit</code> and <code>offset</code> query parameters. By default, i.e. without these parameters, list requests fetches only first ten twins (or less, if there are less then ten twins).</p>
+<p>You can fetch twins [10-29) like this:</p>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins?offset=10&amp;limit=20
+</code></pre>
+<h4 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X DELETE -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/twins/&lt;twin_id&gt;
+</code></pre>
+<h3 id="states-operations">STATES operations<a class="headerlink" href="#states-operations" title="Permanent link">#</a></h3>
+<h4 id="list_1">List<a class="headerlink" href="#list_1" title="Permanent link">#</a></h4>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/states/&lt;twin_id&gt;
+</code></pre>
+<p>List requests accepts <code>limit</code> and <code>offset</code> query parameters. By default, i.e. without these parameters, list requests fetches only first ten states (or less, if there are less then ten states).</p>
+<p>You can fetch states [10-29) like this:</p>
+<pre><code class="language-bash">curl -s -S -i -X GET -H &quot;Authorization: &lt;user_auth_token&gt;&quot; http://localhost:8191/states/&lt;twin_id&gt;?offset=10&amp;limit=20
+</code></pre>
+<h3 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">#</a></h3>
+<p>Every twin and states related operation publishes notifications <em>via</em> NATS. To fully understand what follows, please read about <a href="messaging.html">Mainflux messaging</a> capabilities and utilities.</p>
+<p>In order to pick up this notifications, you have to create a Mainflux channel before you start the twins service and inform the twins service about the channel by means of the environment variable, like this:</p>
+<pre><code class="language-bash">export MF_TWINS_CHANNEL_ID=f6894dfe-a7c9-4eef-a614-637ebeea5b4c
+</code></pre>
+<p>The twins service will use this channel to publish notifications related to twins creation, update, retrieval and deletion. It will also publish notifications related to state saving into the database.</p>
+<p>All notifications will be published on the following NATS subject:</p>
+<pre><code>channels.&lt;mf_twins_channel_id&gt;.&lt;optional_subtopic&gt;
+</code></pre>
+<p>where <code>&lt;optional_subtopic&gt;</code> is one of the following:</p>
+<ul>
+<li><code>create.success</code> - on successful twin creation,</li>
+<li><code>create.failure</code> - on twin creation failure,</li>
+<li><code>update.success</code> - on successful twin update,</li>
+<li><code>update.failure</code> - on twin update failure,</li>
+<li><code>get.success</code> - on successful twin retrieval,</li>
+<li><code>get.failure</code> - on twin retrieval failure,</li>
+<li><code>remove.success</code> - on successful twin deletion,</li>
+<li><code>remove.failure</code> - on twin deletion failure,</li>
+<li><code>save.success</code> - on successful state save</li>
+<li><code>save.failure</code> - on state save failure.</li>
+</ul>
+<p>Normally, you can use NATS wildcards. In order to learn more about Mainflux channel topic composition, please read about <a href="messaging.html">subtopics</a>. The point is to be able to subscribe to all subjects or any operation pair subject - e.g. create.success/failure - by means of one connection and read all messages or all operation related messages in the context of the same subscription.</p>
+<p>Since messages published on NATS are republished on any other protocol supported by Mainflux - HTTP, MQTT, CoAP and WS - you can use any supported protocol client to pick up notifications.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tracing.html" class="btn btn-neutral float-right" title="Tracing">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="bootstrap.html" class="btn btn-neutral" title="Bootstrap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright (c) Mainflux</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/mainflux/docs/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="bootstrap.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="tracing.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
