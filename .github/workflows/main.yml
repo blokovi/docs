@@ -1,14 +1,9 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: Publish docs via GitHub Pages
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,6 +23,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: docs.mainflux.ga
-#           CONFIG_FILE: folder/mkdocs.yml
-#           EXTRA_PACKAGES: build-base
-          # GITHUB_DOMAIN: github.myenterprise.com

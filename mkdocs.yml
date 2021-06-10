@@ -24,6 +24,7 @@ nav:
   - Overview: index.md
   - Architecture: architecture.md
   - Getting Started: getting-started.md
+  - Groups: groups.md
   - Provision: provision.md
   - Messaging: messaging.md
   - Storage: storage.md
